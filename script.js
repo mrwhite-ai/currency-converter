@@ -1,8 +1,8 @@
-
 var fromResult=document.getElementById("sell1");
 var toResult=document.getElementById("sell2");
 var resultFrom="USD";
 var resultTo="EUR";
+var moneyRate=document.getElementById("moneyRate");
 
 //Get Currencies Rate In Select
 fetch("https://open.er-api.com/v6/latest/USD")
@@ -15,7 +15,10 @@ fetch("https://open.er-api.com/v6/latest/USD")
         }
         fromResult.innerHTML=html;
         toResult.innerHTML=html;
-        toResult.value="EUR"; 
+        toResult.value="EUR";
+        let firstRate=(cur.rates[resultTo]/cur.rates[resultFrom]);
+        let htmlRate=`1 ${resultFrom} = ${firstRate} ${resultTo}`
+        moneyRate.innerText=htmlRate;
 });
 
 //Currency Change
@@ -36,14 +39,14 @@ function exchangeCur(){
     .then(cur=>{
         var amount=document.getElementById("enterAmount").value;
         if(amount==""){
-            document.getElementById("moneyRate").innerText="*Please enter amount";
+            moneyRate.innerText="*Please enter amount";
         }else{
         let curRates=cur.rates;
         let fromRates=curRates[resultFrom];
         let toRates=curRates[resultTo];
         let finalAmount=((toRates/fromRates)*amount);
         let htmlcur=`${amount} ${resultFrom} = ${finalAmount} ${resultTo}`;
-        document.getElementById("moneyRate").innerText=htmlcur;
+        moneyRate.innerText=htmlcur;
     }
     })
 }
