@@ -1,0 +1,24 @@
+body{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.container-fluid{
+   height: 100vh;
+   background-color: #333;
+   padding-top:120px;
+}
+.card{
+    border-radius: 10px !important;
+}
+
+.form-control{
+    border-color: #333 !important;
+}
+.form-select{
+    border-color: #333 !important;
+}
+
+.change{
+    cursor: pointer;
+}
